@@ -36,24 +36,22 @@ async def _upload(c, m):
         reply_to_message_id = m.message_id
     )
 
-    download = Downloader(c, m)
+    download = Downloader(m)
 
     status, file = await download.start(progress, snt)
 
     if(not status):
         await snt.edit_text(text = file, parse_mode='markdown')
+        
         return
 
     title = ' '.join(m.command[1:])
 
-    upload = Uploader(c, m, file, title)
+    upload = Uploader(file, title)
 
     status, link = await upload.start(progress, snt)
 
     await snt.edit_text(text = link, parse_mode='markdown')
-
-
-
 
 
 def valid_media(media):
@@ -68,23 +66,25 @@ def valid_media(media):
     else:
         return False
 
-async def progress(c, cur, tot, start_time, status, snt):
+
+async def progress(cur, tot, start_time, status, snt):
     try:
         diff = int(time.time()-start_time)
+        
+        if diff % 2 == 0:
+            speed = round((cur/(1024**2))/diff,2)
 
-        speed = round((cur/(1024**2))/diff,2)
+            curr = round(cur/(1024**2), 2)
 
-        curr = round(cur/(1024**2), 2)
+            tott = round(tot/(1024**2), 2)
 
-        tott = round(tot/(1024**2), 2)
+            eta = datetime.timedelta(seconds=int(((tot-cur)/(1024*1024))/speed))
 
-        eta = datetime.timedelta(seconds=int(((tot-cur)/(1024*1024))/speed))
+            progress = round((cur * 100) / tot,2)
 
-        progress = round((cur * 100) / tot,2)
+            text = f"**{status}**\n\n`{progress}%` done.\n**{curr}MB** of **{tott}MB**\nSpeed: **{speed}MBPS**\nETA: **{eta}**"
 
-        text = f"**{status}**\n\n`{progress}%` done.\n**{curr}MB** of **{tott}MB**\nSpeed: **{speed}MBPS**\nETA: **{eta}**"
-
-        await snt.edit_text(text = text)
+            await snt.edit_text(text = text)
 
     except Exception as e:
         print(e)

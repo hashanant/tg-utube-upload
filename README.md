@@ -14,6 +14,7 @@
 * [Status](https://github.com/odysseusmax/utube#status)
 * [Special Notes](https://github.com/odysseusmax/utube#special-notes)
 * [Screenshots](https://github.com/odysseusmax/utube#screenshots)
+* [Video Tutorial](https://github.com/odysseusmax/utube#video-tutorial)
 * [Contact](https://github.com/odysseusmax/utube#contact)
 
 ### Info
@@ -38,13 +39,13 @@ This is a simple hobby project which i was really curious about to impliment. Th
 **Clone and setup virtual environment**
 
 ``` bash
-git clone https://github.com/odysseusmax/utube.git
+$ git clone https://github.com/odysseusmax/utube.git
 
-cd utube
+$ cd utube
 
-virtualenv .
+$ virtualenv venv
 
-source bin/activate
+$ source venv/bin/activate
 
 ```
 
@@ -65,14 +66,14 @@ source bin/activate
 With all the above procedures done, its time to install our dependencies.
 Run :
 ```bash
-pip3 install -r requirements.txt
+$ pip3 install -r requirements.txt
 ```
 
 **Run bot**
 
 Lets run our bot for the first time!
 ```bash
-python3 bot.py
+$ python3 bot.py
 ```
 If you did everything correctly, the bot should be running. Go do `/start` to see if the bot is live or not. Follow the instructions provided by bot to setup authorisation and to start uploading.
 
@@ -108,6 +109,17 @@ This project is actively maintained and will continue so until I'm tired of it.
 
 <img  width="25%" height="25%" alt="Upload" src="https://github.com/odysseusmax/utube/blob/master/ss/bot-upload.jpg">
 
+</p>
+
+### Video Tutorial
+
+<p align="center">
+           <a href="http://www.youtube.com/watch?feature=player_embedded&v=LSs8b5dMWIA" target="_blank">
+                      <img src="http://img.youtube.com/vi/LSs8b5dMWIA/hqdefault.jpg" alt="How To Make Telegram Bot For YouTube Videos Uploading" />
+           </a>
+</p>
+<p align="center">
+           <b>Video Tutorial</b>
 </p>
 
 ### Contact
